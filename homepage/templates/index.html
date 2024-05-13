@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Products</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="text"></textarea>
+        <label for="floatingTextarea">Paste some text here, you'll see it in a card!</label>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+</form>
+<div class="row" style="width: 15rem;">
+    {% for paste in pastes %}
+    <div class="col">
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{ paste.text }}</h5>
+              <p class="card-text">For every text submitted, a new row will appear!</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
